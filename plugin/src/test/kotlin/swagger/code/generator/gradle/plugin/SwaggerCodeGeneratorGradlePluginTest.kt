@@ -10,13 +10,13 @@ import kotlin.test.assertNotNull
 /**
  * A simple unit test for the 'swagger.code.generator.gradle.plugin.greeting' plugin.
  */
-class SwaggerCodeGeneratorGradlePluginPluginTest {
+class SwaggerCodeGeneratorGradlePluginTest {
     @Test fun `plugin registers task`() {
         // Create a test project and apply the plugin
         val project = ProjectBuilder.builder().build()
-        project.plugins.apply("swagger.code.generator.gradle.plugin.greeting")
+        project.plugins.apply("swagger.code.generator.gradle.plugin.SwaggerCodeGeneratorGradlePlugin")
 
         // Verify the result
-        assertNotNull(project.tasks.findByName("greeting"))
+        assertNotNull(project.tasks.findByName("genApiClient"))
     }
 }
