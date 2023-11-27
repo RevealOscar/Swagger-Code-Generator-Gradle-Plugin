@@ -16,7 +16,6 @@ plugins {
 }
 
 repositories {
-    // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
 
@@ -48,11 +47,25 @@ testing {
     }
 }
 
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.20")
+//
+//    // Use the Kotlin test library
+//    testImplementation("org.jetbrains.kotlin:kotlin-test")
+//    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+}
+
 gradlePlugin {
     // Define the plugin
     val greeting by plugins.creating {
-        id = "swagger.code.generator.gradle.plugin.greeting"
-        implementationClass = "swagger.code.generator.gradle.plugin.SwaggerCodeGeneratorGradlePluginPlugin"
+        id = "swagger.code.generator.gradle.plugin.SwaggerCodeGeneratorGradlePlugin"
+        implementationClass = "swagger.code.generator.gradle.plugin.SwaggerCodeGeneratorGradlePlugin"
+        dependencies {
+            // The plugin implementation depends on the Kotlin standard library
+            implementation(gradleApi())
+            implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.20")
+            implementation("io.swagger.codegen.v3:swagger-codegen:3.0.50")
+        }
     }
 }
 
